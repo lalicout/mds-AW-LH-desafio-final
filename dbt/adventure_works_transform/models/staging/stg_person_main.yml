@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: stg_person_main
+    description: "Modelo staging para a tabela Person, aplicando transformações iniciais, exclusões dos XMLs e validações"
+    columns:
+      - name: person_id
+        description: "Identificador único para a pessoa."
+        tests:
+          - not_null
+          - unique
+
+      - name: person_type
+        description: "Tipo de pessoa ( SC = Store Contact, IN = Individual (retail) customer, SP = Sales person, EM = Employee (non-sales), VC = Vendor contact, GC = General contact)."
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['SC', 'IN', 'SP', 'EM', 'VC', 'GC']
+
+      - name: email_promotion
+        description: "Preferência de recebimento de promoções por e-mail."
+        tests:
+          - accepted_values:
+              values: [0, 1, 2]
+
+      - name: suffix
+        description: "Sufixo do sobrenome (e.g., Sr., Jr.)."
+      
+      - name: title
+        description: "Título de cortesia (e.g., Mr., Ms.)."
+
