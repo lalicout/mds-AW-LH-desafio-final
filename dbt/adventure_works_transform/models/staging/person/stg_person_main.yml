@@ -1,5 +1,15 @@
 version: 2
 
+sources:
+
+  - name: RAW_AW_PERSON
+    description: "Raw data for Person table"
+    database: "AW_DATABASE"  
+    schema: "AW_RAW__PERSON"
+    tables:
+      - name: Person
+        description: "Person table raw data"
+
 models:
   - name: stg_person_main
     description: "Modelo staging para a tabela Person, aplicando transformações iniciais, exclusões dos XMLs e validações"
@@ -28,4 +38,30 @@ models:
       
       - name: title
         description: "Título de cortesia (e.g., Mr., Ms.)."
+      
+      - name: total_purchase_ytd
+        description: "Valor total de compras acumulado no ano."
+        tests:
+          - not_null
+
+      - name: date_first_purchase
+        description: "Data da primeira compra realizada pelo cliente."
+
+      - name: birth_date
+        description: "Data de nascimento do cliente."
+
+      - name: marital_status
+        description: "Estado civil do cliente. (M = Married, S = Single)."
+        tests:
+          - accepted_values:
+              values: ['M', 'S']
+
+      - name: yearly_income
+        description: "Faixa de renda anual do cliente (e.g., 25001-50000)."
+
+      - name: gender
+        description: "Gênero do cliente (F = Feminino, M = Masculino)."
+        tests:
+          - accepted_values:
+              values: ['F', 'M']
 
