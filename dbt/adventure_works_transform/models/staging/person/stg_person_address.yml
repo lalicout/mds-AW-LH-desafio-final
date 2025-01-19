@@ -1,14 +1,13 @@
 version: 2
 
 sources:
-
-  - name: RAW_AW_PERSON
+  - name: RAW_AW_ADDRESS
     description: "Raw data for Address table"
     database: "AW_DATABASE"  
     schema: "AW_RAW__PERSON"
     tables:
-      - name: address
-        description: "Person table raw data"
+      - name: ADDRESS
+        description: "Adress table"
 
 models:
   - name: stg_person_address
@@ -17,37 +16,34 @@ models:
       - name: address_id
         description: "Identificador único para os registros de endereço."
         tests:
-            - not_null
-            - unique
+          - not_null
+          - unique
 
       - name: addressline1
-          description: "Primeira linha do endereço, normalmente usada para a rua e número."
+        description: "Primeira linha do endereço, normalmente usada para a rua e número."
 
       - name: addressline2
-          description: "Segunda linha do endereço, geralmente usada para complementos como unidade, apartamento ou andar."
+        description: "Segunda linha do endereço, geralmente usada para complementos como unidade, apartamento ou andar."
 
-        - name: city
-          description: "Nome da Cidade"
+      - name: city
+        description: "Nome da Cidade"
         
-        - name: id_state_province
-          description: "Chave estrangeira para a tabela 'stateprovince', representando o identificador único do estado ou província associado ao endereço."
-          tests:
-              - not_null
+      - name: id_state_province
+        description: "Chave estrangeira para a tabela 'stateprovince', representando o identificador único do estado ou província associado ao endereço."
+        tests:
+          - not_null
                   
-        - name: postalcode
-          description: "Código Postal do endereço."
-          tests:
-              - not_null
+      - name: postalcode
+        description: "Código Postal do endereço."
 
-        - name: spatiallocation
-          description: "Códificação para latitude e longitude"
+      - name: spatiallocation
+        description: "Códificação para latitude e longitude"
 
-        - name: rowguide
-          description: "Identificador único do registro, usado para garantir unicidade dentro da tabela"
-          tests:
-            - not_null
-            - unique
+      - name: rowguide
+        description: "Identificador único do registro, usado para garantir unicidade dentro da tabela"
+        tests:
+          - not_null
+          - unique
 
-        - name: last_updated_at
-          description: "Data da última modificação no registro."
-
+      - name: last_updated_at
+        description: "Data da última modificação no registro."
