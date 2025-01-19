@@ -1,0 +1,38 @@
+# Nome do projeto dbt, deve conter apenas letras minúsculas e underscores
+name: 'adventure_works_transform'
+version: '1.0.0'
+
+# Nome do perfil usado no profiles.yml para conectar ao Snowflake
+profile: 'adventure_works_transform'
+
+# Diretórios que o dbt irá utilizar
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+# Diretórios para limpeza ao usar o comando `dbt clean`
+clean-targets:
+  - "target"
+  - "dbt_modules"
+
+# Configuração global para os modelos
+models:
+  adventure_works_transform:
+    # Configurações para a camada staging
+    staging:
+      +schema: "STAGING"  # Nome do schema no Snowflake
+      +database: "AW_DATABASE"  # Nome do database no Snowflake
+      materialized: view  # Materialização padrão para staging
+
+    # Configurações para a camada marts
+    marts:
+      +schema: "MARTS"  # Nome do schema no Snowflake
+      +database: "AW_DATABASE"
+      +materialized: table  # Materialização padrão para marts
+
+# Caminho para os artefatos gerados
+target-path: "target"
+
