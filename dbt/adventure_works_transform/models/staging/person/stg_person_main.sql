@@ -22,7 +22,7 @@ person_transformation as (
         end as email_promotion
         ,concat_ws(' ', firstname, middlename, lastname) as full_name
         ,middlename as middle_name
-        ,modifieddate
+        ,modifieddate as last_updated_at
         ,namestyle
         ,rowguid
         ,initcap(suffix) as suffix
