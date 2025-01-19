@@ -64,4 +64,8 @@ models:
         tests:
           - accepted_values:
               values: ['F', 'M']
+      
+      - name: last_updated_at
+        description: "Data da última modificação no registro."
+
 
